@@ -1,0 +1,143 @@
+{
+  "लड़क": {
+    "category": "noun",
+    "meaning": "boy",
+    "gender": "masculine",
+    "base_forms": ["लड़का", "लड़के", "लड़कों"]
+  },
+  "लड़की": {
+    "category": "noun",
+    "meaning": "girl",
+    "gender": "feminine",
+    "base_forms": ["लड़की", "लड़कियाँ", "लड़कियों"]
+  },
+  "बच्च": {
+    "category": "noun",
+    "meaning": "child",
+    "gender": "masculine",
+    "base_forms": ["बच्चा", "बच्चे", "बच्चों"]
+  },
+  "किताब": {
+    "category": "noun",
+    "meaning": "book",
+    "gender": "feminine",
+    "base_forms": ["किताब", "किताबें", "किताबों"]
+  },
+  "मेज": {
+    "category": "noun",
+    "meaning": "table",
+    "gender": "feminine",
+    "base_forms": ["मेज", "मेजें", "मेजों"]
+  },
+  "घर": {
+    "category": "noun",
+    "meaning": "house",
+    "gender": "masculine",
+    "base_forms": ["घर", "घर", "घरों"]
+  },
+  "कमर": {
+    "category": "noun",
+    "meaning": "room",
+    "gender": "masculine",
+    "base_forms": ["कमरा", "कमरे", "कमरों"]
+  },
+  
+  "पढ़": {
+    "category": "verb",
+    "meaning": "read",
+    "transitivity": "transitive",
+    "base_forms": ["पढ़ना", "पढ़ता", "पढ़ती", "पढ़ते", "पढ़ा", "पढ़ी", "पढ़े"]
+  },
+  "लिख": {
+    "category": "verb",
+    "meaning": "write",
+    "transitivity": "transitive",
+    "base_forms": ["लिखना", "लिखता", "लिखती", "लिखते", "लिखा", "लिखी", "लिखे"]
+  },
+  "खा": {
+    "category": "verb",
+    "meaning": "eat",
+    "transitivity": "transitive",
+    "base_forms": ["खाना", "खाता", "खाती", "खाते", "खाया", "खाई", "खाए"]
+  },
+  "जा": {
+    "category": "verb",
+    "meaning": "go",
+    "transitivity": "intransitive",
+    "base_forms": ["जाना", "जाता", "जाती", "जाते", "गया", "गई", "गए"]
+  },
+  "कर": {
+    "category": "verb",
+    "meaning": "do",
+    "transitivity": "transitive",
+    "base_forms": ["करना", "करता", "करती", "करते", "किया", "की", "किए"]
+  },
+  "सो": {
+    "category": "verb",
+    "meaning": "sleep",
+    "transitivity": "intransitive",
+    "base_forms": ["सोना", "सोता", "सोती", "सोते", "सोया", "सोई", "सोए"]
+  },
+  
+  "अच्छ": {
+    "category": "adjective",
+    "meaning": "good",
+    "base_forms": ["अच्छा", "अच्छी", "अच्छे"]
+  },
+  "बड़": {
+    "category": "adjective",
+    "meaning": "big",
+    "base_forms": ["बड़ा", "बड़ी", "बड़े"]
+  },
+  "छोट": {
+    "category": "adjective",
+    "meaning": "small",
+    "base_forms": ["छोटा", "छोटी", "छोटे"]
+  },
+  "लाल": {
+    "category": "adjective",
+    "meaning": "red",
+    "base_forms": ["लाल", "लाल", "लाल"]
+  },
+  "नील": {
+    "category": "adjective",
+    "meaning": "blue",
+    "base_forms": ["नीला", "नीली", "नीले"]
+  },
+  "काल": {
+    "category": "adjective",
+    "meaning": "black",
+    "base_forms": ["काला", "काली", "काले"]
+  },
+  "सफेद": {
+    "category": "adjective",
+    "meaning": "white",
+    "base_forms": ["सफेद", "सफेद", "सफेद"]
+  },
+  
+  "धीरे": {
+    "category": "adverb",
+    "meaning": "slowly",
+    "base_forms": ["धीरे"]
+  },
+  "जल्दी": {
+    "category": "adverb",
+    "meaning": "quickly",
+    "base_forms": ["जल्दी"]
+  },
+  "अच्छे से": {
+    "category": "adverb",
+    "meaning": "well",
+    "base_forms": ["अच्छे से"]
+  },
+  "अंदर": {
+    "category": "adverb",
+    "meaning": "inside",
+    "base_forms": ["अंदर"]
+  },
+  "बाहर": {
+    "category": "adverb",
+    "meaning": "outside",
+    "base_forms": ["बाहर"]
+  }
+}
