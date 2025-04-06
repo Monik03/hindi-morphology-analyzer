@@ -32,7 +32,7 @@ The Hindi Morphology Analyzer is designed to break down Hindi words into their c
 ## Project Structure
 
 - `hindi_morph_gui.py`: The main GUI application
-- `hindi_morph_analyzer.py`: Core analyzer engine (not provided in the samples but referenced)
+- `hindi_morph_analyzer.py`: Core analyzer engine
 - `hindi_morph_rules.json`: Rules for Hindi morphology analysis
 - `enhanced_hindi_dictionary_v2.json`: Dictionary of Hindi root words
 - `wordnet_converter.py`: Utility to convert WordNet data to the dictionary format
