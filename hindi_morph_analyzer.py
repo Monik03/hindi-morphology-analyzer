@@ -199,10 +199,10 @@ class HindiMorphAnalyzer:
             return self.exceptions[word]
         
         # Normalize the word
-        normalized = self.normalize(word)
+        # normalized = self.normalize(word)
         
         # Extract suffix
-        root_after_suffix, suffix, suffix_features = self.extract_suffix(normalized)
+        root_after_suffix, suffix, suffix_features = self.extract_suffix(word)
         
         # Extract prefix from the remaining root
         final_root, prefix, prefix_features = self.extract_prefix(root_after_suffix)
@@ -228,7 +228,7 @@ class HindiMorphAnalyzer:
         # Combine all morphological information
         analysis = {
             'original': word,
-            'normalized': normalized,
+            # 'normalized': normalized,
             'root': final_root,
             'root_info': root_info,
             'suffix': suffix,

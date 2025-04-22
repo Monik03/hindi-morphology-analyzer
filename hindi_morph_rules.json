@@ -1,73 +1,49 @@
 {
-    "suffix_rules": {
-      "ा": {"category": "noun", "gender": "masculine", "number": "singular", "case": "direct"},
-      "े": {"category": "noun", "gender": "masculine", "number": "singular/plural", "case": "oblique"},
-      "ों": {"category": "noun", "gender": "masculine", "number": "plural", "case": "oblique"},
-      "ी": {"category": "noun", "gender": "feminine", "number": "singular", "case": "direct"},
-      "ियाँ": {"category": "noun", "gender": "feminine", "number": "plural", "case": "direct"},
-      "ियों": {"category": "noun", "gender": "feminine", "number": "plural", "case": "oblique"},
-      "एँ": {"category": "noun", "gender": "feminine", "number": "plural", "case": "direct"},
-      "ओं": {"category": "noun", "gender": "feminine", "number": "plural", "case": "oblique"},
-  
-      "याँ": {"category": "noun", "gender": "feminine", "number": "plural", "case": "direct"},
-      "यों": {"category": "noun", "gender": "feminine", "number": "plural", "case": "oblique"},
-      "इयाँ": {"category": "noun", "gender": "feminine", "number": "plural", "case": "direct"},
-      "इयों": {"category": "noun", "gender": "feminine", "number": "plural", "case": "oblique"},
-      "ुअों": {"category": "noun", "number": "plural", "case": "oblique"},
-      "ुएँ": {"category": "noun", "number": "plural", "case": "direct"},
-      "वों": {"category": "noun", "number": "plural", "case": "oblique"},
-      "ेपन": {"category": "noun", "type": "abstract"},
-  
-      "ना": {"category": "verb", "form": "infinitive"},
-      "ता": {"category": "verb", "tense": "present", "aspect": "habitual", "gender": "masculine", "number": "singular"},
-      "ती": {"category": "verb", "tense": "present", "aspect": "habitual", "gender": "feminine", "number": "singular"},
-      "ते": {"category": "verb", "tense": "present", "aspect": "habitual", "gender": "masculine", "number": "plural"},
-      "या": {"category": "verb", "tense": "past", "aspect": "perfective", "gender": "masculine", "number": "singular"},
-      "ई": {"category": "verb", "tense": "past", "aspect": "perfective", "gender": "feminine", "number": "singular"},
-      "ए": {"category": "verb", "tense": "past", "aspect": "perfective", "gender": "masculine", "number": "plural"},
-  
-      "ूँगा": {"category": "verb", "tense": "future", "gender": "masculine", "number": "singular", "person": "first"},
-      "ूँगी": {"category": "verb", "tense": "future", "gender": "feminine", "number": "singular", "person": "first"},
-      "ेंगे": {"category": "verb", "tense": "future", "gender": "masculine", "number": "plural", "person": "first"},
-      "ेगा": {"category": "verb", "tense": "future", "gender": "masculine", "number": "singular", "person": "third"},
-      "ेगी": {"category": "verb", "tense": "future", "gender": "feminine", "number": "singular", "person": "third"},
-      "येगा": {"category": "verb", "tense": "future", "gender": "masculine", "number": "singular"},
-      "येगी": {"category": "verb", "tense": "future", "gender": "feminine", "number": "singular"},
-      "येंगी": {"category": "verb", "tense": "future", "gender": "feminine", "number": "plural"},
-      
-      "ो": {"category": "verb", "mood": "imperative", "formality": "familiar"},
-      "िए": {"category": "verb", "mood": "imperative", "formality": "formal"},
-      "जिए": {"category": "verb", "mood": "imperative", "formality": "formal"},
-      "इए": {"category": "verb", "mood": "imperative", "formality": "formal"},
-  
-      "कर": {"category": "verb", "form": "conjunctive participle"},
-      "के": {"category": "verb", "form": "conjunctive participle"}
-    },
-  
-    "derivational_rules": {
-      "ता": {"base_category": "adjective", "derived_category": "noun", "type": "abstract"},
-      "मय": {"base_category": "noun", "derived_category": "adjective", "meaning": "full of"},
-      "वाला": {"base_category": "noun", "derived_category": ["adjective", "noun"], "meaning": "one who"},
-      "पन": {"base_category": "adjective", "derived_category": "noun", "type": "abstract"},
-      "वां": {"base_category": "cardinal", "derived_category": "ordinal"},
-      "पूर्वक": {"base_category": "noun", "derived_category": "adverb"}
-    },
-  
-    "prefix_rules": {
-      "अ": {"meaning": "negation", "type": "negative"},
-      "अन": {"meaning": "negation", "type": "negative"},
-      "नि": {"meaning": "negation/completeness", "type": "modifier"},
-      "दु": {"meaning": "bad", "type": "quality"},
-      "दुर्": {"meaning": "bad", "type": "quality"},
-      "सु": {"meaning": "good", "type": "quality"},
-      "स": {"meaning": "with", "type": "association"},
-      "पुनर्": {"meaning": "again", "type": "repetition"},
-      "प्रति": {"meaning": "against/towards", "type": "direction"},
-      "पर": {"meaning": "beyond/other", "type": "relation"},
-      "अति": {"meaning": "excessive", "type": "degree"},
-      "अधि": {"meaning": "over/above", "type": "position"}
-    },
-  
+  "suffix_rules": {
+    "ा": {"category": "noun", "gender": "masculine", "number": "singular", "case": "direct"},
+    "े": {"category": "noun", "gender": "masculine", "number": "singular/plural", "case": "oblique"},
+    "ों": {"category": "noun", "gender": "masculine", "number": "plural", "case": "oblique"},
+    "ी": {"category": "noun", "gender": "feminine", "number": "singular", "case": "direct"},
+    "याँ": {"category": "noun", "gender": "feminine", "number": "plural", "case": "direct"},
+    "यों": {"category": "noun", "gender": "feminine", "number": "plural", "case": "oblique"},
+    "एँ": {"category": "noun", "gender": "feminine", "number": "plural", "case": "direct"},
+    "ओं": {"category": "noun", "gender": "feminine", "number": "plural", "case": "oblique"},
+
+    "ना": {"category": "verb", "form": "infinitive"},
+    "ता": {"category": "verb", "tense": "present", "aspect": "habitual", "gender": "masculine", "number": "singular"},
+    "ती": {"category": "verb", "tense": "present", "aspect": "habitual", "gender": "feminine", "number": "singular"},
+    "ते": {"category": "verb", "tense": "present", "aspect": "habitual", "gender": "masculine", "number": "plural"},
+    "या": {"category": "verb", "tense": "past", "aspect": "perfective", "gender": "masculine", "number": "singular"},
+    "ई": {"category": "verb", "tense": "past", "aspect": "perfective", "gender": "feminine", "number": "singular"},
+    "ए": {"category": "verb", "tense": "past", "aspect": "perfective", "gender": "masculine", "number": "plural"},
+
+    "ूँगा": {"category": "verb", "tense": "future", "gender": "masculine", "number": "singular", "person": "first"},
+    "ूँगी": {"category": "verb", "tense": "future", "gender": "feminine", "number": "singular", "person": "first"},
+    "ेंगे": {"category": "verb", "tense": "future", "gender": "masculine", "number": "plural", "person": "first"},
+    "ेगा": {"category": "verb", "tense": "future", "gender": "masculine", "number": "singular", "person": "third"},
+    "ेगी": {"category": "verb", "tense": "future", "gender": "feminine", "number": "singular", "person": "third"},
+    "येंगी": {"category": "verb", "tense": "future", "gender": "feminine", "number": "plural"},
+
+    "ो": {"category": "verb", "mood": "imperative", "formality": "familiar"},
+    "िए": {"category": "verb", "mood": "imperative", "formality": "formal"},
+    "इए": {"category": "verb", "mood": "imperative", "formality": "formal"},
+
+    "कर": {"category": "verb", "form": "conjunctive participle"},
+    "के": {"category": "verb", "form": "conjunctive participle"}
+  },
+
+  "prefix_rules": {
+    "अ": {"meaning": "negation", "type": "negative"},
+    "अन": {"meaning": "negation", "type": "negative"},
+    "नि": {"meaning": "absence/negation", "type": "modifier"},
+    "सु": {"meaning": "good", "type": "quality"},
+    "दु": {"meaning": "bad", "type": "quality"},
+    "पुन": {"meaning": "again", "type": "repetition"},
+    "प्रति": {"meaning": "towards/opposite", "type": "direction"},
+    "अति": {"meaning": "excess", "type": "degree"},
+    "पर": {"meaning": "beyond", "type": "position"}
+  },
+
   "sandhi_rules": {
     "ा+अ": "ा",
     "ि+आ": "ी",
@@ -76,107 +52,67 @@
     "ा+उ": "ो",
     "ु+अ": "्व"
   },
-  
+
   "exceptions": {
     "है": {
       "original": "है",
       "normalized": "है",
-      "root": "हो",
-      "root_info": {"category": "verb", "meaning": "to be"},
-      "suffix": "",
-      "suffix_features": {"tense": "present", "person": "third", "number": "singular"},
-      "prefix": "",
-      "prefix_features": {}
+      "root": "है",
+      "root_info": {"category": "verb", "meaning": "to be"}
     },
     "हैं": {
       "original": "हैं",
       "normalized": "हैं",
-      "root": "हो",
-      "root_info": {"category": "verb", "meaning": "to be"},
-      "suffix": "",
-      "suffix_features": {"tense": "present", "person": "third", "number": "plural"},
-      "prefix": "",
-      "prefix_features": {}
+      "root": "हैं",
+      "root_info": {"category": "verb", "meaning": "to be"}
     },
     "था": {
       "original": "था",
       "normalized": "था",
-      "root": "हो",
-      "root_info": {"category": "verb", "meaning": "to be"},
-      "suffix": "",
-      "suffix_features": {"tense": "past", "gender": "masculine", "number": "singular"},
-      "prefix": "",
-      "prefix_features": {}
+      "root": "था",
+      "root_info": {"category": "verb", "meaning": "to be"}
     },
     "थे": {
       "original": "थे",
       "normalized": "थे",
-      "root": "हो",
-      "root_info": {"category": "verb", "meaning": "to be"},
-      "suffix": "",
-      "suffix_features": {"tense": "past", "gender": "masculine", "number": "plural"},
-      "prefix": "",
-      "prefix_features": {}
+      "root": "थे",
+      "root_info": {"category": "verb", "meaning": "to be"}
     },
     "थी": {
       "original": "थी",
       "normalized": "थी",
-      "root": "हो",
-      "root_info": {"category": "verb", "meaning": "to be"},
-      "suffix": "",
-      "suffix_features": {"tense": "past", "gender": "feminine", "number": "singular"},
-      "prefix": "",
-      "prefix_features": {}
+      "root": "थी",
+      "root_info": {"category": "verb", "meaning": "to be"}
     },
     "थीं": {
       "original": "थीं",
       "normalized": "थीं",
-      "root": "हो",
-      "root_info": {"category": "verb", "meaning": "to be"},
-      "suffix": "",
-      "suffix_features": {"tense": "past", "gender": "feminine", "number": "plural"},
-      "prefix": "",
-      "prefix_features": {}
+      "root": "थीं",
+      "root_info": {"category": "verb", "meaning": "to be"}
     },
     "मैं": {
       "original": "मैं",
       "normalized": "मैं",
       "root": "मैं",
-      "root_info": {"category": "pronoun", "meaning": "I"},
-      "suffix": "",
-      "suffix_features": {"person": "first", "number": "singular"},
-      "prefix": "",
-      "prefix_features": {}
+      "root_info": {"category": "pronoun", "meaning": "I"}
     },
     "हम": {
       "original": "हम",
       "normalized": "हम",
       "root": "हम",
-      "root_info": {"category": "pronoun", "meaning": "we"},
-      "suffix": "",
-      "suffix_features": {"person": "first", "number": "plural"},
-      "prefix": "",
-      "prefix_features": {}
+      "root_info": {"category": "pronoun", "meaning": "we"}
     },
     "तुम": {
       "original": "तुम",
       "normalized": "तुम",
       "root": "तुम",
-      "root_info": {"category": "pronoun", "meaning": "you"},
-      "suffix": "",
-      "suffix_features": {"person": "second", "number": "singular", "formality": "familiar"},
-      "prefix": "",
-      "prefix_features": {}
+      "root_info": {"category": "pronoun", "meaning": "you (familiar)"}
     },
     "आप": {
       "original": "आप",
       "normalized": "आप",
       "root": "आप",
-      "root_info": {"category": "pronoun", "meaning": "you"},
-      "suffix": "",
-      "suffix_features": {"person": "second", "number": "singular/plural", "formality": "formal"},
-      "prefix": "",
-      "prefix_features": {}
+      "root_info": {"category": "pronoun", "meaning": "you (formal)"}
     }
   }
 }

@@ -27,9 +27,9 @@ class HindiMorphGUI:
         self.root.tk.call('tk', 'scaling', 2.0)
         
         self.root.title("Hindi Morphology Analyzer")
-        self.root.geometry("800x600")
+        self.root.geometry("600x700")
         self.root.resizable(True, True)
-        self.root.minsize(600, 500)
+        self.root.minsize(600, 700)
                 
         # Initialize analyzer
         self.initialize_analyzer()
@@ -48,7 +48,7 @@ class HindiMorphGUI:
     def initialize_analyzer(self):
         """Initialize the morphology analyzer"""
         rules_path = "hindi_morph_rules.json" if os.path.exists("hindi_morph_rules.json") else None
-        dict_path = "enhanced_hindi_dictionary_v2.json" if os.path.exists("enhanced_hindi_dictionary.json") else None
+        dict_path = "enhanced_hindi_dictionary_v2.json" if os.path.exists("enhanced_hindi_dictionary_v2.json") else None
         
         self.analyzer = HindiMorphAnalyzer(rules_path=rules_path, dictionary_path=dict_path)
         self.rules_path = rules_path
@@ -82,92 +82,142 @@ class HindiMorphGUI:
     
     def create_input_frame(self):
         """Create input frame with text area and buttons"""
-        input_frame = ttk.LabelFrame(self.main_frame, text="Hindi Text Input", padding="5")
-        input_frame.pack(fill=tk.BOTH, expand=True, pady=5)
+        input_frame = ttk.LabelFrame(self.main_frame, text="Enter Hindi Word", padding="5")
+        input_frame.pack(fill=tk.BOTH, pady=5)
         
-        # Text input area
-        self.input_text = scrolledtext.ScrolledText(input_frame, wrap=tk.WORD, height=8)
-        self.input_text.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
-                
-        # Sample text button
-        sample_frame = ttk.Frame(input_frame)
+        # Text input area - single line
+        self.input_text = ttk.Entry(input_frame)
+        self.input_text.pack(fill=tk.X, padx=5, pady=5)
+        
+        # Sample words frame
+        sample_frame = ttk.LabelFrame(input_frame, text="Sample Words", padding="5")
         sample_frame.pack(fill=tk.X, padx=5, pady=5)
         
-        ttk.Label(sample_frame, text="Try sample text:").pack(side=tk.LEFT, padx=5)
-        
-        sample_texts = [
-            "राम घर जाता है।",
-            "सीता किताब पढ़ती है।",
-            "मैं कल दिल्ली जाऊँगा।"
+        sample_words = [
+            "लड़का",
+            "पढ़ता",
+            "अशुभ",
+            "सुरक्षा",
+            "अप्रसन्नता"
         ]
         
-        for sample in sample_texts:
-            btn = ttk.Button(sample_frame, text=sample, command=lambda s=sample: self.load_sample(s))
-            btn.pack(side=tk.LEFT, padx=2)
+        # Create sample word buttons in a grid
+        for i, word in enumerate(sample_words):
+            btn = ttk.Button(sample_frame, text=word, 
+                            command=lambda w=word: self.load_sample(w))
+            btn.grid(row=i//3, column=i%3, padx=2, pady=2, sticky='ew')
         
         # Button frame
         button_frame = ttk.Frame(input_frame)
         button_frame.pack(fill=tk.X, padx=5, pady=5)
         
-        # Analysis type
-        ttk.Label(button_frame, text="Analysis Type:").pack(side=tk.LEFT, padx=5)
-        
-        self.analysis_type = tk.StringVar(value="text")
-        ttk.Radiobutton(button_frame, text="Full Text", variable=self.analysis_type, value="text").pack(side=tk.LEFT)
-        ttk.Radiobutton(button_frame, text="Single Word", variable=self.analysis_type, value="word").pack(side=tk.LEFT)
-        
-        # Analyze button
+        # Analyze and Clear buttons
         analyze_btn = ttk.Button(button_frame, text="Analyze", command=self.analyze_text)
         analyze_btn.pack(side=tk.RIGHT, padx=5)
         
-        # Clear button
         clear_btn = ttk.Button(button_frame, text="Clear", command=self.clear_input)
         clear_btn.pack(side=tk.RIGHT, padx=5)
     
     def create_output_frame(self):
         """Create output frame with results area"""
-        output_frame = ttk.LabelFrame(self.main_frame, text="Analysis Results", padding="5")
-        output_frame.pack(fill=tk.BOTH, expand=True, pady=5)
+        output_frame = ttk.LabelFrame(self.main_frame, text="Analysis Results", padding="10")
+        output_frame.pack(fill=tk.BOTH, expand=True, pady=10)
         
-        # Create notebook for different output views
-        self.output_notebook = ttk.Notebook(output_frame)
-        self.output_notebook.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
+        # Main results frame with centered content
+        result_frame = ttk.Frame(output_frame)
+        result_frame.pack(fill=tk.BOTH, expand=True, padx=20, pady=10)
         
-        # Raw results tab
-        self.raw_output_frame = ttk.Frame(self.output_notebook)
-        self.output_notebook.add(self.raw_output_frame, text="Raw Analysis")
+        # Create frames for each result row with distinctive styling
+        self.result_word_var = tk.StringVar()
+        self.result_root_var = tk.StringVar()
+        self.result_prefix_var = tk.StringVar()
+        self.result_suffix_var = tk.StringVar()
         
-        self.raw_output = scrolledtext.ScrolledText(self.raw_output_frame, wrap=tk.WORD, height=10)
-        self.raw_output.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
+        # Word frame
+        word_frame = ttk.Frame(result_frame, padding="5")
+        word_frame.pack(fill=tk.X, pady=5)
+        ttk.Label(word_frame, text="Word:", width=15, anchor=tk.E).pack(side=tk.LEFT, padx=5)
+        ttk.Label(word_frame, textvariable=self.result_word_var, font=('Nirmala UI', 14, 'bold')).pack(side=tk.LEFT, padx=5)
         
-        # Formatted results tab
-        self.formatted_output_frame = ttk.Frame(self.output_notebook)
-        self.output_notebook.add(self.formatted_output_frame, text="Formatted Analysis")
+        # Root frame with highlight
+        root_frame = ttk.Frame(result_frame, padding="5")
+        root_frame.pack(fill=tk.X, pady=5)
+        ttk.Label(root_frame, text="Root:", width=15, anchor=tk.E).pack(side=tk.LEFT, padx=5)
+        self.root_label = ttk.Label(root_frame, textvariable=self.result_root_var, font=('Nirmala UI', 13))
+        self.root_label.pack(side=tk.LEFT, padx=5)
         
-        # Treeview for structured output
-        self.tree_columns = ("Word", "Root", "Category", "Prefix", "Prefix Features", "Suffix", "Suffix Features", "Sandhi Applied")
-        self.formatted_output = ttk.Treeview(self.formatted_output_frame, columns=self.tree_columns, show="headings")
+        # Prefix frame
+        prefix_frame = ttk.Frame(result_frame, padding="5")
+        prefix_frame.pack(fill=tk.X, pady=5)
+        ttk.Label(prefix_frame, text="Prefix:", width=15, anchor=tk.E).pack(side=tk.LEFT, padx=5)
+        self.prefix_label = ttk.Label(prefix_frame, textvariable=self.result_prefix_var, font=('Nirmala UI', 12))
+        self.prefix_label.pack(side=tk.LEFT, padx=5)
         
-        # Configure columns with appropriate widths
-        for col in self.tree_columns:
-            self.formatted_output.heading(col, text=col)
-            if col in ("Prefix Features", "Suffix Features"):
-                self.formatted_output.column(col, width=250, minwidth=200)
-            elif col == "Sandhi Applied":
-                self.formatted_output.column(col, width=120, minwidth=100)
-            else:
-                self.formatted_output.column(col, width=100, minwidth=80)
+        # Suffix frame
+        suffix_frame = ttk.Frame(result_frame, padding="5")
+        suffix_frame.pack(fill=tk.X, pady=5)
+        ttk.Label(suffix_frame, text="Suffix:", width=15, anchor=tk.E).pack(side=tk.LEFT, padx=5)
+        self.suffix_label = ttk.Label(suffix_frame, textvariable=self.result_suffix_var, font=('Nirmala UI', 12))
+        self.suffix_label.pack(side=tk.LEFT, padx=5)
         
-        # Add scrollbars to treeview
-        tree_scrolly = ttk.Scrollbar(self.formatted_output_frame, orient="vertical", command=self.formatted_output.yview)
-        tree_scrollx = ttk.Scrollbar(self.formatted_output_frame, orient="horizontal", command=self.formatted_output.xview)
-        self.formatted_output.configure(yscrollcommand=tree_scrolly.set, xscrollcommand=tree_scrollx.set)
+        # Add Detail View button centered at bottom
+        button_frame = ttk.Frame(output_frame)
+        button_frame.pack(side=tk.BOTTOM, pady=10, fill=tk.X)
+        detail_btn = ttk.Button(button_frame, text="Show Details", command=self.show_details)
+        detail_btn.pack(side=tk.BOTTOM, anchor=tk.CENTER)
+
+    def show_details(self):
+        """Show detailed information about the analyzed word"""
+        if not hasattr(self, 'last_result') or not self.last_result:
+            messagebox.showinfo("Info", "No analysis results available")
+            return
+            
+        # Get the full analysis from stored results
+        analysis = self.last_result[0]  # Since we're only analyzing one word
+        word = analysis['original']
         
-        # Pack the treeview and scrollbars
-        tree_scrolly.pack(side=tk.RIGHT, fill=tk.Y)
-        tree_scrollx.pack(side=tk.BOTTOM, fill=tk.X)
-        self.formatted_output.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
-    
+        details = f"Detailed Analysis for '{word}'\n\n"
+        details += f"Root Word: {analysis['root']}\n"
+        
+        if 'root_info' in analysis and analysis['root_info']:
+            if analysis['root_info'].get('meaning'):
+                details += f"Meaning: {analysis['root_info']['meaning']}\n"
+            if analysis['root_info'].get('category'):
+                details += f"Category: {analysis['root_info']['category']}\n"
+        
+        if analysis.get('prefix', ''):
+            details += f"\nPrefix Information:\n"
+            details += "\n".join([f"{k}: {v}" for k, v in analysis['prefix_features'].items()])
+        
+        if analysis.get('suffix', ''):
+            details += f"\n\nSuffix Information:\n"
+            details += "\n".join([f"{k}: {v}" for k, v in analysis['suffix_features'].items()])
+        
+        # Enhanced sandhi information
+        if analysis.get('sandhi_applied'):
+            details += f"\n\nSandhi Applied: Yes"
+            # Get sandhi rules from the analyzer
+            sandhi_rules = self.analyzer.sandhi_rules if hasattr(self.analyzer, 'sandhi_rules') else {}
+            
+            # Display information about prefix-root junction if applicable
+            if analysis.get('prefix') and analysis.get('root'):
+                junction = f"{analysis['prefix'][-1]}+{analysis['root'][0]}"
+                # Check if the junction is in the sandhi rules
+                if junction in sandhi_rules:
+                    details += f"\n\nPrefix-Root Junction: {analysis['prefix']} + {analysis['root']}"
+                    details += f"\nSandhi Rule Applied: {junction} → {sandhi_rules[junction]}"
+                    # details += f"\nExample: {analysis['prefix'][:-1]}{sandhi_rules[junction]}{analysis['root'][1:]}"
+                
+            # Display information about root-suffix junction if applicable
+            if analysis.get('root') and analysis.get('suffix'):
+                junction = f"{analysis['root'][-1]}+{analysis['suffix'][0]}"
+                if junction in sandhi_rules:
+                    details += f"\n\nRoot-Suffix Junction: {analysis['root']} + {analysis['suffix']}"
+                    details += f"\nSandhi Rule Applied: {junction} → {sandhi_rules[junction]}"
+                    # details += f"\nExample: {analysis['root'][:-1]}{sandhi_rules[junction]}{analysis['suffix'][1:]}"
+        
+        messagebox.showinfo("Detailed Analysis", details)
+
     def create_statusbar(self):
         """Create status bar at the bottom of the window"""
         self.status_var = tk.StringVar()
@@ -178,88 +228,59 @@ class HindiMorphGUI:
     
     def load_sample(self, sample_text):
         """Load a sample text into the input area"""
-        self.input_text.delete(1.0, tk.END)
-        self.input_text.insert(tk.END, sample_text)
+        self.input_text.delete(0, tk.END)
+        self.input_text.insert(0, sample_text)
         self.status_var.set(f"Loaded sample text: {sample_text}")
     
     def clear_input(self):
         """Clear the input text area"""
-        self.input_text.delete(1.0, tk.END)
-        self.raw_output.delete(1.0, tk.END)
-        self.formatted_output.delete(*self.formatted_output.get_children())
+        self.input_text.delete(0, tk.END)
+        self.result_word_var.set("")
+        self.result_root_var.set("")
+        self.result_prefix_var.set("")
+        self.result_suffix_var.set("")
         self.status_var.set("Input cleared")
     
     def analyze_text(self):
-        """Analyze the input text and display results"""
-        input_text = self.input_text.get(1.0, tk.END).strip()
-        if not input_text:
-            messagebox.showwarning("No Input", "Please enter some Hindi text to analyze.")
+        """Analyze the input word and display results"""
+        input_word = self.input_text.get().strip()
+        if not input_word:
+            messagebox.showwarning("No Input", "Please enter a Hindi word to analyze.")
             return
         
         try:
-            self.status_var.set("Analyzing text...")
+            self.status_var.set("Analyzing word...")
             self.root.update_idletasks()
             
-            if self.analysis_type.get() == "word":
-                # Analyze as a single word
-                result = [self.analyzer.analyze(input_text)]
-            else:
-                # Analyze as full text
-                result = self.analyzer.process_text(input_text)
+            # Analyze single word
+            result = [self.analyzer.analyze(input_word)]
+            self.last_result = result  # Store for details view
             
+            # Display results
             self.display_results(result)
-            self.status_var.set(f"Analysis complete: {len(result)} word(s) analyzed")
+            self.status_var.set("Analysis complete")
         
         except Exception as e:
-            messagebox.showerror("Analysis Error", f"Error analyzing text: {str(e)}")
+            messagebox.showerror("Analysis Error", f"Error analyzing word: {str(e)}")
             self.status_var.set("Analysis failed")
-    
+
     def display_results(self, results):
-        """Display analysis results in the output areas"""
-        # Clear previous results
-        self.raw_output.delete(1.0, tk.END)
-        self.formatted_output.delete(*self.formatted_output.get_children())
+        """Display analysis results using StringVar variables"""
+        if not results or len(results) == 0:
+            return
+            
+        # Get the first result (we're only analyzing one word at a time)
+        item = results[0]
         
-        # Display raw JSON output
-        json_output = json.dumps(results, ensure_ascii=False, indent=4)
-        self.raw_output.insert(tk.END, json_output)
+        # Update the StringVar values
+        self.result_word_var.set(item['original'])
+        self.result_root_var.set(item['root'])
+        self.result_prefix_var.set(item.get('prefix', '-'))
+        self.result_suffix_var.set(item.get('suffix', '-'))
         
-        # Display formatted output in treeview
-        for i, item in enumerate(results):
-            word = item.get('original', '')
-            root = item.get('root', '')
-            category = item.get('root_info', {}).get('category', 'unknown')
-            
-            # Get prefix information
-            prefix = item.get('prefix', '')
-            prefix_features = item.get('prefix_features', {})
-            prefix_features_str = ', '.join([f"{k}: {v}" for k, v in prefix_features.items()]) if prefix_features else ''
-            
-            # Get suffix information
-            suffix = item.get('suffix', '')
-            suffix_features = item.get('suffix_features', {})
-            suffix_features_str = ', '.join([f"{k}: {v}" for k, v in suffix_features.items()]) if suffix_features else ''
-            
-            # Get sandhi information
-            sandhi_applied = item.get('sandhi_applied', False)
-            sandhi_info = "Yes" if sandhi_applied else "No"
-            
-            # Add to treeview with sandhi information
-            self.formatted_output.insert('', 'end', text=f"item_{i}", 
-                                         values=(word, root, category, 
-                                                 prefix, prefix_features_str, 
-                                                 suffix, suffix_features_str, 
-                                                 sandhi_info))
-            
-            # If sandhi was applied, show details in raw output
-            if sandhi_applied:
-                self.raw_output.insert(tk.END, f"\n\nSandhi Analysis for '{word}':")
-                if prefix:
-                    self.raw_output.insert(tk.END, f"\nPrefix-Root Junction: {prefix}+{root}")
-                if suffix:
-                    self.raw_output.insert(tk.END, f"\nRoot-Suffix Junction: {root}+{suffix}")
-                self.raw_output.insert(tk.END, "\n")
-    
+        # Store the result for details view
+        self.last_result = results
+
     def open_text_file(self):
         """Open a text file for analysis"""
         file_path = filedialog.askopenfilename(
@@ -272,8 +293,8 @@ class HindiMorphGUI:
                 with open(file_path, 'r', encoding='utf-8') as file:
                     text = file.read()
                 
-                self.input_text.delete(1.0, tk.END)
-                self.input_text.insert(tk.END, text)
+                self.input_text.delete(0, tk.END)
+                self.input_text.insert(0, text)
                 self.status_var.set(f"Loaded file: {os.path.basename(file_path)}")
             
             except Exception as e:
